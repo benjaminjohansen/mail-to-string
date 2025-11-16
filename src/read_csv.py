@@ -38,9 +38,11 @@ def find_duplicates(files: list, columns: list = ["Email"]) -> list:
 
     # find duplicates
     df_final = pl.concat(df_all)
-    n_duplicates = df_final.select(pl.col("Email")).filter(
-        pl.col("Email").is_duplicated()
-    ).unique()
+    n_duplicates = (
+        df_final.select(pl.col("Email"))
+        .filter(pl.col("Email").is_duplicated())
+        .unique()
+    )
     print(n_duplicates.height)
 
 

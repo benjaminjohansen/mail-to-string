@@ -2,12 +2,22 @@ import polars as pl
 
 file_path = "data/Deltagere - 361222.csv"
 
-# You can use file on mac/linux to find the correct encoding
-participants = pl.read_csv(file_path, encoding="8859", separator=";")
 
-emails = list(participants["Email"])
+def extract_emails(file_path: str, separator: str = ";") -> print:
+    """Simple function to find all emails of participants of an IDA course. Then print them separated with <separator> for sending using mail program
 
-# [print(f"{mail}; ") for mail in emails]
+    Args:
+        file_path (str): _description_
+        separator (str): default ";". Change to the most relevant separator
+    Returns:
+        print: _description_
+    """
+    # You can use file on mac/linux to find the correct encoding
+    participants = pl.read_csv(file_path, encoding="8859", separator=";")
+
+    emails = list(participants["Email"])
+
+    [print(f"{mail}{separator} ") for mail in emails]
 
 
 def find_duplicates(files: list, columns: list = ["Email"]) -> list:
@@ -43,7 +53,8 @@ def find_duplicates(files: list, columns: list = ["Email"]) -> list:
         .filter(pl.col("Email").is_duplicated())
         .unique()
     )
-    print(n_duplicates.height)
+    print("Number of participants overlapping in events:", n_duplicates.height)
 
 
+extract_emails(file_path=file_path)
 find_duplicates(["data/Deltagere - 361185.csv", "data/Deltagere - 361187.csv"])

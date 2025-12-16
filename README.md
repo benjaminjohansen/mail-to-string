@@ -11,4 +11,4 @@ As these files have a strange encoding.
 2. Add a data directory `data` and upload data. This directory is ignored by .gitignore
 3. Check the encoding of your csv file. On unix systems you can use `file data/DATA_FILE_NAME` - replace DATA_FILE_NAME with the actual name
 4. Update the encoding variable in the `src/read_csv.py` script
-5. Run the script with `uv run src/read_csv-py`. On mac you can copy to clipboard by `uv run src/read_csv-py | pbcopy` on Linux you can `uv run src/read_csv-py | xclip -selection clipboard`
+5. Run the script with `uv run src/read_csv.py`. On mac you can copy to clipboard by `uv run src/read_csv-py | pbcopy` on Linux you can `uv run src/read_csv.py | xclip -selection clipboard`
